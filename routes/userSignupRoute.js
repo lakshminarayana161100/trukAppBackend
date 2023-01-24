@@ -18,20 +18,20 @@ router.post('/signup', [body('email').isEmail().normalizeEmail()],(req, res, nex
 
     const userSignup = new UserSignup({
         _id: new mongoose.Types.ObjectId,
-       // username: req.body.username,
-        //password: req.body.password,
+        role: req.body.role,
+        companyName: req.body.companyName,
         mobileNo: req.body.mobileno,
-        // address:  req.body.address,
+        city:  req.body.city,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         // email: req.body.email
 
            });
 
-     var username = req.body.username;
-  //first check if user is alredy existed 
-  UserSignup.findOne({username:username}).select().exec().then(doc =>{
-
+     var  mobileNo = req.body.mobileno;
+  //first check if user is alredy existed with the mobile no
+  UserSignup.findOne({mobileNo:mobileNo}).select().exec().then(doc =>{
+    console.log(doc);
     if(doc == null){ //if no user found then create new user
         userSignup.save().then( result=> {
             res.status(200).json({
@@ -48,7 +48,7 @@ router.post('/signup', [body('email').isEmail().normalizeEmail()],(req, res, nex
          })
 
     }else{
-        res.status(200).json({message:"user aleredy exists",
+        res.status(300).json({message:"user aleredy exists",
                               status:"failed"
     
                              })
@@ -64,10 +64,9 @@ router.post('/signup', [body('email').isEmail().normalizeEmail()],(req, res, nex
 
 
 
-
+//login flow
 router.post('/login', (req, res, next)=>{
-  //  const username = req.params.username;
-  //  const password = req.params.password;
+
      
    var mobileNo=req.body.mobileno;
     console.log(mobileNo)
@@ -75,12 +74,14 @@ router.post('/login', (req, res, next)=>{
     console.log(mobileNo)
     var user  = req.body.mobileno;
     ///var pass  = req.body.password;
+    console.log(doc);
     
     //after getting the doc compare username and password
     if(user == doc.mobileNo){
       res.status(200).json({Authentication: doc._id,
                              message: "Success",
-                            userProfile:doc})
+                            userProfile:doc,
+                            role:doc.role})
     }
     else
     { 
