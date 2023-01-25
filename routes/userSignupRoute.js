@@ -24,6 +24,7 @@ router.post('/signup', [body('email').isEmail().normalizeEmail()],(req, res, nex
         city:  req.body.city,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
+        routes:req.body.routes
         // email: req.body.email
 
            });

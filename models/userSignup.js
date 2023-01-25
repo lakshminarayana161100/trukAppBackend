@@ -19,7 +19,8 @@ const UserProfileSchema = mongoose.Schema({
    companyName:{type: String, required: true},
    firstName:  {type:String, required: true},
    lastName:  {type:String, required: true},
-   city: {type: String, required: true}
+   city: {type: String, required: true},
+   routes:{type: Array}
 //    email:{type:String, required: true}
    
 });
