@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 //import all routes here 
 const userSignupRoutes = require('./routes/userSignupRoute');
 const generateQuoteRoute= require('./routes/generateQuoteRoute');
+const truckManagementRoute= require('./routes/vehicleManagementRoute');
 
 
 
@@ -47,6 +48,9 @@ const { body, validationResult } = require('express-validator');
 app.use('/TruckAppUsers', userSignupRoutes); 
 //generate quote and create quote
 app.use('/quotes', generateQuoteRoute);
+//add trucks and truck management
+app.use('/truckManagement', truckManagementRoute);
+
 
 app.get("/", (req, res, next)=>{
     res.json({
