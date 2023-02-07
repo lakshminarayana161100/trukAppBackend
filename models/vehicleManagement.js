@@ -22,10 +22,3 @@ const vehicleManagementSchema = mongoose.Schema({
 
 //export this mongoose module
 module.exports = mongoose.model('vehicleManagement', vehicleManagementSchema);
-
-
-
-
-
-
-

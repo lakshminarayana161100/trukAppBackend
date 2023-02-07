@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const morgan = require('morgan');
+//const morgan = require('morgan');
 const bodyParser = require('body-parser');
 //const expressValidator = require('express-validator')
 const mongoose = require('mongoose');
@@ -9,19 +9,21 @@ const mongoose = require('mongoose');
 const userSignupRoutes = require('./routes/userSignupRoute');
 const generateQuoteRoute= require('./routes/generateQuoteRoute');
 const truckManagementRoute= require('./routes/vehicleManagementRoute');
-
+const postVehicle= require("./routes/vehicle")
+const cors = require('cors')
 
 
 //connect to the mongo
 mongoose.set("strictQuery", false);
 
-mongoose.connect("mongodb+srv://truckapp:365dDqb@cluster0.j93vm65.mongodb.net/?retryWrites=true&w=majority");
+mongoose.connect('mongodb+srv://lakshminarayana:narayana@cluster0.ewnrqzl.mongodb.net/?retryWrites=true&w=majority');
 mongoose.Promise = global.Promise;
 
 //provides additional logs in the console
-app.use(morgan('dev'));
+//app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+app.use(cors());
 //app.use(expressValidator());
 //enabling cross origin issue
 app.use((req, res, next)=>{
@@ -50,6 +52,9 @@ app.use('/TruckAppUsers', userSignupRoutes);
 app.use('/quotes', generateQuoteRoute);
 //add trucks and truck management
 app.use('/truckManagement', truckManagementRoute);
+app.use('/addTruk',postVehicle);
+
+
 
 
 app.get("/", (req, res, next)=>{
