@@ -10,7 +10,7 @@ const Vehicle = mongoose.Schema({
         type: String,
         //required: true
     },
-    selectedItems: {
+    operatingRoutes: {
         type: Array,
         //required: true
     },
@@ -30,6 +30,12 @@ const Vehicle = mongoose.Schema({
         default:"Active"
     },
     mobileNo:{
+        type:String
+    },
+    pickupLocation:{
+        type:String
+    },
+    dropLocation:{
         type:String
     }
 })

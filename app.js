@@ -9,6 +9,8 @@ const mongoose = require('mongoose');
 const userSignupRoutes = require('./routes/userSignupRoute');
 const generateQuoteRoute= require('./routes/generateQuoteRoute');
 const truckManagementRoute= require('./routes/vehicleManagementRoute');
+
+
 const postVehicle= require("./routes/vehicle")
 const cors = require('cors')
 
@@ -52,6 +54,8 @@ app.use('/TruckAppUsers', userSignupRoutes);
 app.use('/quotes', generateQuoteRoute);
 //add trucks and truck management
 app.use('/truckManagement', truckManagementRoute);
+
+
 app.use('/addTruk',postVehicle);
 
 
