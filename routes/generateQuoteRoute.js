@@ -58,7 +58,7 @@ router.post('/generateQuote', (req, res, next) => {
             trukoperatingRoutes:req.body.trukoperatingRoutes,
             trukcapacity:req.body.trukcapacity,
             trukname:req.body.trukname,
-            trukmobileNo:req.body.trukmobileNo
+            trukOwnerNumber:req.body.trukOwnerNumber
           }
 
             //get the details for the quote generating

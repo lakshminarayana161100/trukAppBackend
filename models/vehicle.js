@@ -29,8 +29,8 @@ const Vehicle = mongoose.Schema({
         type:String,
         default:"Active"
     },
-    trukmobileNo:{
-        type:String
+    trukOwnerNumber:{
+        type:Number,
     },
     trukpickupLocation:{
         type:String

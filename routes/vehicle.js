@@ -24,9 +24,10 @@ router.post('/vehiclepost', async(req, res, next) => {        // want to create 
         trukcurrentLocation: req.body.trukcurrentLocation,
         trukoperatingRoutes: req.body.trukoperatingRoutes,
         trukcapacity: req.body.trukcapacity,
+        trukOwnerNumber:req.body.trukOwnerNumber,
         trukname: req.body.trukname,
         trukdate:req.body.trukdate,
-        trukmobileNo:req.body.trukmobileNo
+       
 
 
     });
@@ -73,15 +74,15 @@ if(!vehicle){
             vehicle
         })
     } catch (error) {
-        res.status(401).send(error)
+        res.status(401).send(error) 
     }
 });
 
 // GetbymobileNo API
 
- router.get('/allVehicles/:trukmobileNo', (req, res, next)=>{
+ router.get('/allVehicles/:trukOwnerNumber', (req, res, next)=>{
 
-    AddVehicle.find({trukmobileNo:req.params.trukmobileNo}).exec().then(
+    AddVehicle.find({trukOwnerNumber:req.params.trukOwnerNumber}).exec().then(
          docs =>{
              res.status(200).json({
                         data: docs
@@ -100,7 +101,7 @@ if(!vehicle){
 
 router.put('/updateLoads/:id', async (req, res) => {
     const updates = Object.keys(req.body) //keys will be stored in updates ==> req body fields
-    const allowedUpdates = ['trukvehiclenumber', 'trukcurrentLocation','trukoperatingRoutes','trukcapacity','trukname','trukdate','trukmobileNo'] // updates that are allowed
+    const allowedUpdates = ['trukvehiclenumber', 'trukcurrentLocation','trukoperatingRoutes','trukcapacity','trukname','trukdate','trukOwnerNumber'] // updates that are allowed
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update)) // validating the written key in req.body with the allowed updates
     if (!isValidOperation) {
         console.log(isValidOperation)
@@ -163,7 +164,7 @@ router.delete('/deleteTruk/:_id' ,async(req,res)=> {
 })
 //Get the truk by isActive
 
-router.get('/trukByStatus/:isActive',async(req,res)=>{
+router.get('/trukByStatus/:trukisActive',async(req,res)=>{
     try{
         const vehicle= await AddVehicle.find({trukisActive:req.params.trukisActive})
         if(!vehicle){

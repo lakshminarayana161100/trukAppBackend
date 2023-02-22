@@ -41,7 +41,7 @@ const TruckMarketVehicleInformation= new mongoose.Schema({
     trukoperatingRoutes:{type: Array},
     trukcapacity:{type: String},
     trukname:{type: String},
-    trukmobileNo:{type:String}
+    trukOwnerNumber:{type:String}
 
   
 
